@@ -116,15 +116,15 @@ Then, call `verifyHashes` with a list of files and hashes, as well as a completi
 ```
 var operationId = window.TVSHA1Hash.verifyHashes ( 
                    [ { file: "www/test1.txt", 
-                       hash: "3a1ed3fb75b4e387bc4bc6f424214ca075912589" }, //right
+                       hash: "3a1ed3fb75b4e387bc4bc6f424214ca075912589" }, //right hash
                      { file: "www/test2.txt", 
-                       hash: "9ba5be16fca5d9232f4255379d3bf1856b7731ca" }, //wrong
+                       hash: "9ba5be16fca5d9232f4255379d3bf1856b7731ca" }, //wrong hash
                      { file: "www/test3.txt", 
-                       hash: "0a1568ebf5ac9207acfc8a683946ba0c06fd7d34" }, //right
+                       hash: "0a1568ebf5ac9207acfc8a683946ba0c06fd7d34" }, //right hash
                      { file: "www/empty.txt",  
-                       hash: "da39a3ee5e6b4b0d3255bfef95601890afd80709" }, //right
+                       hash: "da39a3ee5e6b4b0d3255bfef95601890afd80709" }, //right hash
                      { file: "www/notfound.txt", 
-                       hash: "8daaddcbb3ca602a2bfc8337bf44cce9ab7b67f0" }  //error
+                       hash: "8daaddcbb3ca602a2bfc8337bf44cce9ab7b67f0" }  //error (file does not exist)
                    ], hashCompleted );
 };
 ```
