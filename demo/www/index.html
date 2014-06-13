@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+  EXAMPLE SHA1 HASHING CODE
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>Demo</title>
+    </head>
+    <body>
+      <script type="text/javascript" src="cordova.js"></script>
+      <div id="output"></div>
+        <script type="text/javascript">
+          // called whenever hash progress changes -- do not assume this will be called, though
+          function hashProgress ( operationID ) {
+            document.getElementById("output").textContent += operationID + " progress updated.";
+          }
+          
+          // called whenever the hash process is completed
+          function hashCompleted ( results ) {
+            document.getElementById("output").textContent += JSON.stringify(results);
+            window.TVSHA1Hash.removeProgressListener ( hashProgress );
+            var allPassed = true;
+            results.forEach ( function (result) {
+              if (result.match !== 1) {
+                allPassed = false;
+              }
+            });
+            if (allPassed) {
+              // start your app
+              console.log ("Take off!");
+            } else {
+              // complain
+              console.log ("Incomplete matches, or other errors");
+            }
+          }
+          
+          // called when the device is ready to check hashes
+          function checkHashes () {
+            // set the base path to the application bundle
+            window.TVSHA1Hash.setBasePath ( cordova.file.applicationDirectory );
+            // add a progress listener
+            window.TVSHA1Hash.addProgressListener ( hashProgress );
+            
+            // verify a set of five hashes
+            var operationId = window.TVSHA1Hash.verifyHashes ( [ 
+                                               { file: "www/test1.txt", 
+                                                 hash: "3a1ed3fb75b4e387bc4bc6f424214ca075912589" }, //right
+                                               { file: "www/test2.txt", 
+                                                 hash: "9ba5be16fca5d9232f4255379d3bf1856b7731ca" }, //wrong
+                                               { file: "www/test3.txt", 
+                                                 hash: "0a1568ebf5ac9207acfc8a683946ba0c06fd7d34" }, //right
+                                               { file: "www/empty.txt",  
+                                                 hash: "da39a3ee5e6b4b0d3255bfef95601890afd80709" }, //right
+                                               { file: "www/notfound.txt", 
+                                                 hash: "8daaddcbb3ca602a2bfc8337bf44cce9ab7b67f0" }  //error
+                                             ], hashCompleted );
+          };
+          
+          // wait for the device to be ready...
+          document.addEventListener ("deviceready", function () {
+            checkHashes();
+          }, false);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.autonettv.sha1hash"
+    version="1.0.0">
+    <engines>
+    	<engine name="cordova" version=">=2.9.0" />
+    </engines>
+    <name>SHA1 Hash</name>
+    <description>Native SHA1 hashing for better performance. iOS6+ only for now.</description>
+    <author>Kerri Shotts, Chase Noel</author>
+    <keywords>sha1, hash, ios, ios6, ios7</keywords>
+    <license>MIT</license>
+	<js-module src="www/TVSHA1Hash.js" name="TVSHA1Hash">
+		<clobbers target="window.TVSHA1Hash" />
+	</js-module>
+	<platform name="ios">
+    	<!-- ios-specific elements -->
+		<header-file src="src/ios/TVSHA1Hash.h" />
+		<source-file src="src/ios/TVSHA1Hash.m" />
+		<config-file target="config.xml" parent="/widget/plugins">
+		<feature name="TVSHA1Hash">
+			<param name="ios-package" value="TVSHA1Hash"/>
+		</feature>
+		</config-file>
+	</platform>    
+</plugin>
