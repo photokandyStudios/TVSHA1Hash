@@ -69,7 +69,7 @@ var TVSHA1Hash = {
 	 */
 	_notifyOfProgress: function _notifyOfProgress ( operationID ) {
 		_progressListeners.forEach ( function (callback) {
-			callback(operationID);
+			setTimeout(function () {callback(operationID);}, 0);
 		});
 	},
 	
