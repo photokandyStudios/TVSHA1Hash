@@ -47,12 +47,16 @@
             var operationId = window.TVSHA1Hash.verifyHashes ( [ 
                                                { file: "www/test1.txt", 
                                                  hash: "3a1ed3fb75b4e387bc4bc6f424214ca075912589" }, //right
+                                             //shasum:  3a1ed3fb75b4e387bc4bc6f424214ca075912589
                                                { file: "www/test2.txt", 
-                                                 hash: "9ba5be16fca5d9232f4255379d3bf1856b7731ca" }, //wrong
+                                                 hash: "f6bd49eee79ab9a3902e95df75fd367d7a17da70" }, //wrong
+                                             //shasum:  e6bd49eee79ab9a3902e95df75fd367d7a17da70
                                                { file: "www/test3.txt", 
                                                  hash: "0a1568ebf5ac9207acfc8a683946ba0c06fd7d34" }, //right
+                                             //shasum:  0a1568ebf5ac9207acfc8a683946ba0c06fd7d34
                                                { file: "www/empty.txt",  
                                                  hash: "da39a3ee5e6b4b0d3255bfef95601890afd80709" }, //right
+                                             //shasum:  da39a3ee5e6b4b0d3255bfef95601890afd80709
                                                { file: "www/notfound.txt", 
                                                  hash: "8daaddcbb3ca602a2bfc8337bf44cce9ab7b67f0" }  //error
                                              ], hashCompleted );
