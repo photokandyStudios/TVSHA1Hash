@@ -58,7 +58,7 @@ cordova plugin add com.autonettv.sha1hash
 If you want to reference the repository:
 
 ```
-cordova plugin add https://github.com/photokandyStudios/TVSHA1Hash#plugin
+cordova plugin add https://github.com/photokandyStudios/TVSHA1Hash\#master:plugin
 ```
 
 If you want to install from a downloaded copy:
@@ -73,7 +73,7 @@ All interaction with the library is through `window.TVSHA1Hash`. An example Cord
 
 ### Set Base Path
 
-The plugin needs to know where your files live, unless you want to specify each one as an absolute path. If the `file` plugin is available and version `1.2.0` or greater, the `dataDirectory` is the default location. Otherwise no default is assumed.
+The plugin needs to know where your files live, unless you want to specify each one as an absolute path. If the `file` plugin is available and version `1.2.0` or greater, the `cordova.file.dataDirectory` is the default location. Otherwise no default is assumed.
 
 To set the base path:
 
@@ -105,7 +105,7 @@ function hashProgress ( operationID ) {
 }
 ```
 
-**Note:** Your program logic should never assume the progress listener is ever called, nor should it assume it is called in any particular order.
+**Note:** Your program logic should never assume the progress listener is ever called, nor should it assume it is called in any particular order. Because the progress listener is called within a `setTimeout`, it's possible that the callback will be called *after* the operation has notified the completion handler. As such, build your logic so that it can be called, before, during, or after the completion handler, as well as handling the case where the listener is never called.
 
 ### Request hash verifications
 
@@ -152,7 +152,7 @@ function hashCompleted ( results ) {
 
 ### Important Notes
 
-* Files are loaded as memory mapped files if at all possible (which should be the case on iOS). This means that there *is* a limit to the file size, but it isn't memory bound.
+* Files are loaded as memory mapped files if at all possible (which should be the case on any modern iOS version). This means that there *is* a limit to the file size, but it isn't bound to available RAM.
 
 * Do not use `alert` or other native code that may display interactive elements in your handlers. Doing so may cause crashes and other problems.
 
